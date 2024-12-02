@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Configuração geral do corpo: Fundo azul escuro e centralização do conteúdo */
+  body {                                              
+    height: 100vh;                 /* Altura da tela toda */                     
+    display: flex;                /* Alinhamento flexbox */
+    background: #011752;       /* Fundo azul escuro */
+  }
+  
+  /* Contêiner principal do jogo de memória */
+  .memory-game {
+    width: 640px;  /* Largura fixa do jogo */
+    height: 640px; /* Altura fixa do jogo */
+    margin: auto;  
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+  }
+  
+  /* Cartas do jogo */
+  .memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  }
+  
+  /*A classe: active, adicionada quando o elemento é clicado, para um efeito de clique. Aplicamos uma transição de .2s*/
+  .memory-card:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+  }
+  
+  /*A classe: flip, rotaciona a carta 180°:*/
+  .memory-card.flip {
+    transform: rotateY(180deg);
+  }
+  
+  .front-face,
+  .back-face {
+    width: 100%;            /* As faces ocupam todo o espaço da carta.*/
+    height: 100%;
+    padding: 20px;
+    position: absolute;       /*Posiciona as faces uma sobre a outra dentro da carta.*/
+    border-radius: 5px;      /*Arredonda levemente os cantos das faces.*/
+    background: #ff914d;           
+    backface-visibility: hidden;   /* Torna a face invisível quando está de costas para o usuário. */
+  }
+  
+  .front-face {
+    transform: rotateY(180deg);  /*Rotaciona a face frontal para que fique inicialmente "escondida" atrás da carta.*/
+  }
